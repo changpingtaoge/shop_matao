@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment;
 
 import com.jy.firsttest.shop.R;
 
-
+/**
+ * 加注释
+ */
 public class CartFragment extends Fragment {
 
     public static CartFragment newInstance(){
