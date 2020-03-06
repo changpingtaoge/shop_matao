@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">shop</string>
+    <string name="main_page">首页</string>
+    <string name="section">专题</string>
+    <string name="category">分类</string>
+    <string name="cart">购物车</string>
+    <string name="me">我的</string>
+    <string name="title">仿网易严选</string>
+    <string name="yuan">元</string>
+</resources>

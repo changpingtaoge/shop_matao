@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <!--
+    1、返回按钮（左侧返回icon）
+    2、标题、子标题
+    3、溢出菜单（用户icon、设置icon、其他）
+    4、溢出菜单按钮（+号）
+    -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tooBar"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:layout_weight="1"
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
+
+    <!--滑动选项 -->
+    <com.google.android.material.tabs.TabLayout
+        app:tabIndicatorHeight="0dp"
+        android:background="@color/c_eaeaea"
+        android:id="@+id/tabLayout"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"/>
+</LinearLayout>
