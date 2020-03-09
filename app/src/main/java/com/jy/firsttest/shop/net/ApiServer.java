@@ -1,5 +1,6 @@
 package com.jy.firsttest.shop.net;
 
+import com.jy.firsttest.shop.bean.HomeBean;
 import com.jy.firsttest.shop.bean.TopicBean;
 
 import io.reactivex.Flowable;
@@ -11,4 +12,7 @@ public interface ApiServer {
 
     @GET("topic/list?")
     Flowable<TopicBean> getTopic(@Query("page") int page, @Query("size") int size);
+
+    @GET("index")
+    Flowable<HomeBean> getHomeData();
 }
