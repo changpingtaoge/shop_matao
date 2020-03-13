@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jy.firsttest.shop">
 
+    <!--网络权限打开-->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -13,7 +14,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".RegisterActivity"></activity>
         <activity android:name=".ForgetActivity" />
+        <!--打开消息列表权限-->
         <activity android:name=".MainActivity" />
+        <!--语音权限打开：ok-->
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
