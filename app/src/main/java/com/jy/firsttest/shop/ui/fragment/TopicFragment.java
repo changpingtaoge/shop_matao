@@ -70,9 +70,9 @@ public class TopicFragment extends Fragment {
                 .build();
         ApiServer apiServer = retrofit.create(ApiServer.class);
         apiServer.getTopic(page, size)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new ResourceSubscriber<TopicBean>() {
+                .subscribeOn(Schedulers.io())                   //被观察者在子线程执行，这里可以newThread(),但是经常用io()，这里有了线程池，效率更高,数据访问在子线程【执行一次】
+                .observeOn(AndroidSchedulers.mainThread())      //数据处理在主线程【线程切换】   【观察者在哪里响应可以写多个】
+                .subscribeWith(new ResourceSubscriber<TopicBean>() {        //订阅
                     @Override
                     public void onNext(TopicBean topicBean) {
                         Log.d(TAG, "onNext: "+topicBean.getData().toString());
