@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,29 +10,30 @@
 
     <EditText
         android:id="@+id/userName"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="用户名" />
-
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:hint="账号" />
     <EditText
         android:id="@+id/userPwd"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
         android:hint="密码" />
 
     <EditText
         android:id="@+id/userPwd2"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
         android:hint="确认密码" />
 
     <Button
-        android:id="@+id/doRegister"
-        android:layout_width="match_parent"
+        android:id="@+id/btnRegister"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_width="match_parent"
         android:text="注册" />
+
 
 </LinearLayout>

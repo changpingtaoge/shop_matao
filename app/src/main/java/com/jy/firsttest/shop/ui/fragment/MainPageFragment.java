@@ -1,6 +1,8 @@
 package com.jy.firsttest.shop.ui.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jy.firsttest.shop.GoodsDetailActivity;
 import com.jy.firsttest.shop.R;
 import com.jy.firsttest.shop.adapter.HomeAdapter;
 import com.jy.firsttest.shop.bean.HomeBean;
@@ -36,7 +39,7 @@ public class MainPageFragment extends Fragment {
 
     private HomeAdapter adapter;
     private ArrayList<HomeBean.DataBean.BannerBean> banners;
-    private ArrayList<HomeBean.DataBean.NewGoodsListBean> list;
+    private ArrayList<HomeBean.DataBean.CategoryListBean.GoodsListBean> list;
 
 
     public static MainPageFragment newInstance() {
@@ -79,7 +82,7 @@ public class MainPageFragment extends Fragment {
                     @Override
                     public void onNext(HomeBean homeBean) {
                         List<HomeBean.DataBean.BannerBean> banner = homeBean.getData().getBanner();
-                        List<HomeBean.DataBean.NewGoodsListBean> newGoodsList = homeBean.getData().getNewGoodsList();
+                        List<HomeBean.DataBean.CategoryListBean.GoodsListBean> newGoodsList = homeBean.getData().getCategoryList().get(0).getGoodsList();
 
                         banners.addAll(banner);
                         list.addAll(newGoodsList);
@@ -107,6 +110,17 @@ public class MainPageFragment extends Fragment {
 
         adapter = new HomeAdapter(getActivity(), banners, list);
         rv.setAdapter(adapter);
+
+        adapter.setOnItemClickLis(new HomeAdapter.OnItemClickLis() {
+            @Override
+            public void onItemClick(int position) {
+                Log.d("tag", "onItemClick: " + "进来");
+                int id = list.get(position).getId();
+                Intent intent = new Intent(getActivity(), GoodsDetailActivity.class);
+                intent.putExtra("id", id);
+                startActivity(intent);
+            }
+        });
     }
 
 

@@ -1,11 +1,10 @@
 package com.jy.firsttest.shop.net;
 
-import android.widget.EditText;
-
+import com.jy.firsttest.shop.bean.GoodsDetailBean;
 import com.jy.firsttest.shop.bean.HomeBean;
+import com.jy.firsttest.shop.bean.LoginBean;
+import com.jy.firsttest.shop.bean.RegisterBean;
 import com.jy.firsttest.shop.bean.TopicBean;
-import com.jy.firsttest.shop.bean.UserBean;
-import com.jy.firsttest.shop.bean.UserRegisterBean;
 
 import io.reactivex.Flowable;
 import retrofit2.http.Field;
@@ -25,11 +24,13 @@ public interface ApiServer {
 
     @POST("auth/login")
     @FormUrlEncoded
-    Flowable<UserBean> doLogin(@Field("nickname") String nickname, @Field("password") String password);
+    Flowable<LoginBean> doLogin(@Field("nickname") String nickname, @Field("password") String password);
 
     @POST("auth/register")
     @FormUrlEncoded
-    Flowable<UserRegisterBean> doRegister(@Field("nickname") String nickname, @Field("password") String password);
+    Flowable<RegisterBean> doRegister(@Field("nickname") String nickname, @Field("password") String password);
 
+    @GET("goods/detail?")
+    Flowable<GoodsDetailBean> getGoodsDetail(@Query("id") int id);
 
 }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.jy.firsttest.shop">
-
-    <!--网络权限打开-->
+    <!-- 网络权限需要打开 -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -12,14 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RegisterActivity"></activity>
+        <activity android:name=".GoodsDetailActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".LoginActivity" />
         <activity android:name=".ForgetActivity" />
-        <!--打开消息列表权限-->
-        <activity android:name=".MainActivity" />
-        <!--语音权限打开：ok-->
-        <activity android:name=".LoginActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

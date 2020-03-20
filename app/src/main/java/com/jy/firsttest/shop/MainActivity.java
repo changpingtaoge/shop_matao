@@ -129,35 +129,35 @@ public class MainActivity extends AppCompatActivity {
     //1.创建选项菜单
     //2.菜单的点击事件
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //添加菜单2种方式
-        //groupid,菜单组的id
-        //itemid,菜单的id
-        //order,排序,数字越小排位靠上
-        //title,菜单标题
-        //添加方式1
-        /*menu.add(0,0,1,"删除");
-        menu.add(0,1,0,"添加");*/
-        //添加方式2
-        getMenuInflater().inflate(R.menu.menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-    //2.菜单的点击事件
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.add:
-                showToast(item.getTitle());
-                break;
-            case R.id.delete:
-                showToast(item.getTitle());
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    public void showToast(CharSequence msg){
-        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //添加菜单2种方式
+//        //groupid,菜单组的id
+//        //itemid,菜单的id
+//        //order,排序,数字越小排位靠上
+//        //title,菜单标题
+//        //添加方式1
+//        /*menu.add(0,0,1,"删除");
+//        menu.add(0,1,0,"添加");*/
+//        //添加方式2
+//        getMenuInflater().inflate(R.menu.menu,menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
+//    //2.菜单的点击事件
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.add:
+//                showToast(item.getTitle());
+//                break;
+//            case R.id.delete:
+//                showToast(item.getTitle());
+//                break;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
+//
+//    public void showToast(CharSequence msg){
+//        Toast.makeText(this,msg, Toast.LENGTH_SHORT).show();
+//    }
 }

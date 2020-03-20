@@ -25,16 +25,10 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final LayoutInflater inflater;
     private Context context;
     private List<HomeBean.DataBean.BannerBean> banners;
-    private List<HomeBean.DataBean.NewGoodsListBean> list;
+    private List<HomeBean.DataBean.CategoryListBean.GoodsListBean> list;
     private int VIEW_TYPE_ONE = 1;
     private int VIEW_TYPE_TWO = 2;
-
-    public HomeAdapter(Context context, List<HomeBean.DataBean.BannerBean> banners, List<HomeBean.DataBean.NewGoodsListBean> list) {
-        this.context = context;
-        this.banners = banners;
-        this.list = list;
-        inflater = LayoutInflater.from(context);
-    }
+    private OnItemClickLis mOnItemClickLis;
 
     @NonNull
     @Override
@@ -49,30 +43,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        int itemViewType = holder.getItemViewType();
-
-        if (itemViewType == VIEW_TYPE_ONE) {
-            ArrayList<String> images = new ArrayList<>();
-            ArrayList<String> titles = new ArrayList<>();
-            for (int i = 0; i < banners.size(); i++) {
-                images.add(banners.get(i).getImage_url());
-                titles.add(banners.get(i).getName());
-            }
-            ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
-            viewHolderOne.banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE).setImages(images).setImageLoader(new ImageLoader() {
-                @Override
-                public void displayImage(Context context, Object path, ImageView imageView) {
-                    Glide.with(context).load(path).into(imageView);
-                }
-            }).setBannerTitles(titles).start();
-        } else {
-            HomeBean.DataBean.NewGoodsListBean newGoodsListBean = list.get(position - 1);
-            ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
-            viewHolderTwo.tv_home_name.setText(newGoodsListBean.getName());
-            Glide.with(context).load(newGoodsListBean.getList_pic_url()).into(viewHolderTwo.iv_home_item);
-        }
+    public HomeAdapter(Context context, List<HomeBean.DataBean.BannerBean> banners, List<HomeBean.DataBean.CategoryListBean.GoodsListBean> list) {
+        this.context = context;
+        this.banners = banners;
+        this.list = list;
+        inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -100,6 +75,46 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
     }
 
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+        int itemViewType = holder.getItemViewType();
+
+        if (itemViewType == VIEW_TYPE_ONE) {
+            ArrayList<String> images = new ArrayList<>();
+            ArrayList<String> titles = new ArrayList<>();
+            for (int i = 0; i < banners.size(); i++) {
+                images.add(banners.get(i).getImage_url());
+                titles.add(banners.get(i).getName());
+            }
+            ViewHolderOne viewHolderOne = (ViewHolderOne) holder;
+            viewHolderOne.banner.setBannerStyle(BannerConfig.NUM_INDICATOR_TITLE).setImages(images).setImageLoader(new ImageLoader() {
+                @Override
+                public void displayImage(Context context, Object path, ImageView imageView) {
+                    Glide.with(context).load(path).into(imageView);
+                }
+            }).setBannerTitles(titles).start();
+        } else {
+            HomeBean.DataBean.CategoryListBean.GoodsListBean newGoodsListBean = list.get(position - 1);
+            ViewHolderTwo viewHolderTwo = (ViewHolderTwo) holder;
+            viewHolderTwo.tv_home_name.setText(newGoodsListBean.getName());
+            Glide.with(context).load(newGoodsListBean.getList_pic_url()).into(viewHolderTwo.iv_home_item);
+        }
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnItemClickLis.onItemClick(position - 1);
+            }
+        });
+    }
+
+    public void setOnItemClickLis(OnItemClickLis onItemClickLis) {
+        mOnItemClickLis = onItemClickLis;
+    }
+
+    //条目点击的接口回调
+    public interface OnItemClickLis {
+        void onItemClick(int position);
+    }
 
     public static
     class ViewHolderTwo extends RecyclerView.ViewHolder {

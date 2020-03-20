@@ -12,8 +12,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.jy.firsttest.shop.bean.UserBean;
-import com.jy.firsttest.shop.bean.UserRegisterBean;
+import com.jy.firsttest.shop.bean.RegisterBean;
 import com.jy.firsttest.shop.net.ApiServer;
 
 import io.reactivex.Flowable;
@@ -26,11 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private static final String TAG = "RegisterActivity";
     private EditText userName;
     private EditText userPwd;
     private EditText userPwd2;
-    private Button doRegister;
+    private Button btnRegister;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,74 +41,78 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         userName = (EditText) findViewById(R.id.userName);
         userPwd = (EditText) findViewById(R.id.userPwd);
         userPwd2 = (EditText) findViewById(R.id.userPwd2);
-        doRegister = (Button) findViewById(R.id.doRegister);
+        btnRegister = (Button) findViewById(R.id.btnRegister);
 
-        doRegister.setOnClickListener(this);
+        btnRegister.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.doRegister:
+            case R.id.btnRegister:
                 submit();
-                String userNameString = userName.getText().toString().trim();
-                String userPwdString = userPwd.getText().toString().trim();
-                doRegister(userNameString, userPwdString);
+                String name = userName.getText().toString().trim();
+                String password = userPwd.getText().toString().trim();
+                doRegister(name, password);
                 break;
         }
     }
 
+    //注册的方法
     @SuppressLint("CheckResult")
-    private void doRegister(String userNameString, String userPwdString) {
-        //1.创建Rerotfit对象
+    private void doRegister(String name, String password) {
+        //1.创建Retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiServer.url)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .baseUrl(ApiServer.url) //访问网络的url地址
+                .addConverterFactory(GsonConverterFactory.create())//对Gson解析的支持
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) //对RxJava的支持
                 .build();
-        //2.通过反射获取接口对象
+
+        //2.创建接口对象
         ApiServer apiServer = retrofit.create(ApiServer.class);
-        //3.对用注册的方法
-        Flowable<UserRegisterBean> userRegisterBean = apiServer.doRegister(userNameString, userPwdString);
+
+        //3.调用注册方法
+        Flowable<RegisterBean> registerBeanFlowable = apiServer.doRegister(name, password);
+
         //4.执行操作
-        userRegisterBean
-                .subscribeOn(Schedulers.io()) //子线程访问数据
-                .observeOn(AndroidSchedulers.mainThread()) //显示在主线程
-                .subscribeWith(new ResourceSubscriber<UserRegisterBean>() {
+        registerBeanFlowable
+                .subscribeOn(Schedulers.io()) //访问数据在子线程
+                .observeOn(AndroidSchedulers.mainThread()) //执行在主线程 【线程切换】
+                .subscribeWith(new ResourceSubscriber<RegisterBean>() {
+                    //成功
                     @Override
-                    public void onNext(UserRegisterBean userRegisterBean) {
-                        String errmsg = userRegisterBean.getErrmsg();
-                        int errno = userRegisterBean.getErrno();
-                        String nickname = userRegisterBean.getData().getUserInfo().getNickname();
-                        Log.d(TAG, "errmsg: " + errmsg + "errno:" + errno + "nickname:" + nickname);
-                        if (errno == 0 && nickname.equals(userNameString)) {
+                    public void onNext(RegisterBean registerBean) {
+                        int errno = registerBean.getErrno();
+                        if (errno == 0) {
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                            intent.putExtra("name", userNameString);
-                            intent.putExtra("pwd", userPwdString);
-                            setResult(520, intent);
+                            intent.putExtra("name", name);
+                            intent.putExtra("pwd", password);
+                            setResult(250, intent);
                             finish();
-                        } else {
-                            Toast.makeText(RegisterActivity.this, "注册失败！", Toast.LENGTH_SHORT).show();
                         }
                     }
 
+                    //失败
                     @Override
                     public void onError(Throwable t) {
-                        Log.d(TAG, "onError: " + t.toString());
+                        Log.d("TAG", "onError: " + t.toString());
                     }
 
+                    //完成
                     @Override
                     public void onComplete() {
 
                     }
                 });
+
+
     }
 
+
     private void submit() {
-        // validate
         String userNameString = userName.getText().toString().trim();
         if (TextUtils.isEmpty(userNameString)) {
-            Toast.makeText(this, "用户名", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "账号", Toast.LENGTH_SHORT).show();
             return;
         }
 

@@ -1,12 +1,15 @@
 package com.jy.firsttest.shop.bean;
 
-public class UserBean {
+/**
+ * 登录所需的JavaBean对象
+ */
+public class LoginBean {
 
 
     /**
      * errno : 0
      * errmsg :
-     * data : {"code":200,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2MiwiaWF0IjoxNTg0MDgzMzU1fQ.4ULDDdRHb_-MY74MM0YzvyCZ3cPBRg7_x_vU9Y5zYSI","userInfo":{"id":62,"username":"0b9b0170-7041-4ca3-b8d3-cff6334b1ab8","nickname":"maadmin","gender":0,"avatar":"","birthday":0}}
+     * data : {"code":200,"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4MywiaWF0IjoxNTg0NDI0ODE3fQ.0JJG1yzi-qNzwc2XWIyw_tVT-h6Wbp_yc73iDabzMic","userInfo":{"id":83,"username":"4c3a0dc6-6226-47f3-8f18-296a97631047","nickname":"jiyun1234","gender":0,"avatar":"","birthday":0}}
      */
 
     private int errno;
@@ -40,8 +43,8 @@ public class UserBean {
     public static class DataBean {
         /**
          * code : 200
-         * token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo2MiwiaWF0IjoxNTg0MDgzMzU1fQ.4ULDDdRHb_-MY74MM0YzvyCZ3cPBRg7_x_vU9Y5zYSI
-         * userInfo : {"id":62,"username":"0b9b0170-7041-4ca3-b8d3-cff6334b1ab8","nickname":"maadmin","gender":0,"avatar":"","birthday":0}
+         * token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo4MywiaWF0IjoxNTg0NDI0ODE3fQ.0JJG1yzi-qNzwc2XWIyw_tVT-h6Wbp_yc73iDabzMic
+         * userInfo : {"id":83,"username":"4c3a0dc6-6226-47f3-8f18-296a97631047","nickname":"jiyun1234","gender":0,"avatar":"","birthday":0}
          */
 
         private int code;
@@ -74,9 +77,9 @@ public class UserBean {
 
         public static class UserInfoBean {
             /**
-             * id : 62
-             * username : 0b9b0170-7041-4ca3-b8d3-cff6334b1ab8
-             * nickname : maadmin
+             * id : 83
+             * username : 4c3a0dc6-6226-47f3-8f18-296a97631047
+             * nickname : jiyun1234
              * gender : 0
              * avatar :
              * birthday : 0
