@@ -1,11 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:text="@string/cart"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/car_recycler"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="match_parent"
+        android:layout_above="@id/rel_car_lead" />
 
-</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/rel_car_lead"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
+
+        <CheckBox
+            android:id="@+id/car_cb_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:text="全部()" />
+
+        <TextView
+            android:id="@+id/car_tv_count_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toRightOf="@id/car_cb_all"
+            android:text="总价"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/car_tv_edit_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:layout_toLeftOf="@id/car_btn_car_press"
+            android:text="编辑"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/car_btn_car_press"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            android:background="@android:color/holo_red_light"
+            android:text="下单"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+        />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

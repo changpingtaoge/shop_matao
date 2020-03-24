@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
+    android:id="@+id/ll_bottom_lead"
     tools:context=".GoodsDetailActivity">
 
 
@@ -97,6 +98,7 @@
                 android:background="@color/gray" />
 
             <RelativeLayout
+                android:id="@+id/relat_choose_count"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginLeft="10dp"
@@ -202,21 +204,114 @@
                 <ImageView
                     android:id="@+id/img_pic_url"
                     android:layout_width="80dp"
-                    android:layout_height="60dp"
-                    android:layout_below="@+id/txt_content"
-                    android:layout_alignLeft="@+id/txt_content"
-                    android:layout_marginTop="5dp" />
+                    android:layout_height="80dp"
+                    android:layout_below="@id/txt_content"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/me5" />
             </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/gray" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="商品参数"
+                android:textSize="18sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rec_attribute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp" />
+
+            <WebView
+                android:id="@+id/web_desc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"></WebView>
+
 
         </LinearLayout>
     </ScrollView>
 
     <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@color/gray"
+        android:background="@color/ColorWhite"
+        android:layout_width="match_parent"
         android:orientation="horizontal">
 
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2">
+
+            <ImageView
+                android:id="@+id/img_save"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/icon_save_normal" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="2">
+
+            <ImageView
+                android:id="@+id/img_cart"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_menu_shoping_nor" />
+
+            <TextView
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:background="@color/gray" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="3">
+
+            <TextView
+                android:id="@+id/txt_justbuy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="立即购买" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="3"
+            android:background="#CE0000">
+
+            <TextView
+                android:id="@+id/txt_addtocart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="加入购物车"
+                android:textColor="@color/ColorWhite" />
+        </RelativeLayout>
 
     </LinearLayout>
+
 </LinearLayout>

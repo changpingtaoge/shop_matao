@@ -40,7 +40,7 @@ public class TopicFragment extends Fragment {
     private SmartRefreshLayout mSrl;
     private int page = 1;
     private int size = 10;
-    private  RlvTopicAdapter mAdapter;
+    private RlvTopicAdapter mAdapter;
     private int mTotalPages;
 
     public static TopicFragment newInstance() {

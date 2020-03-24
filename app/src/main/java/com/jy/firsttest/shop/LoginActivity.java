@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         btnLogin.setOnClickListener(this);
         textRegister.setOnClickListener(this);
+        textForget.setOnClickListener(this);
     }
 
     @Override
@@ -63,6 +64,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.textRegister:
                 Intent intent2 = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivityForResult(intent2, 520);
+                break;
+            case R.id.textForget:
+                Intent intent3 = new Intent(LoginActivity.this, ForgetActivity.class);
+                startActivity(intent3);
                 break;
         }
     }
@@ -93,7 +98,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         int code = loginBean.getData().getCode();
                         if (code == 200) {
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
+                            intent.putExtra("name", name);
+                            setResult(2, intent);
+                            finish();
                         } else {
                             Toast.makeText(LoginActivity.this, "账号或密码错误", Toast.LENGTH_SHORT).show();
                         }

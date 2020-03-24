@@ -1,5 +1,8 @@
 package com.jy.firsttest.shop.net;
 
+import com.jy.firsttest.shop.bean.AddCarBean;
+import com.jy.firsttest.shop.bean.CarInfo;
+import com.jy.firsttest.shop.bean.DelCarInfo;
 import com.jy.firsttest.shop.bean.GoodsDetailBean;
 import com.jy.firsttest.shop.bean.HomeBean;
 import com.jy.firsttest.shop.bean.LoginBean;
@@ -32,5 +35,23 @@ public interface ApiServer {
 
     @GET("goods/detail?")
     Flowable<GoodsDetailBean> getGoodsDetail(@Query("id") int id);
+
+    // 添加购物车
+    // https://cdwan.cn/api/cart/add
+    @POST("cart/add")
+    @FormUrlEncoded
+    Flowable<AddCarBean> addCarInfo(@Field("goodsId") int goodsId,
+                                    @Field("number") int number,
+                                    @Field("productId") int productId);
+
+    // 获取购物车数据
+    //https://cdwan.cn/api/cart/index
+    @GET("cart/index")
+    Flowable<CarInfo> getCarDtate();
+
+
+    @POST("cart/delete")
+    @FormUrlEncoded
+    Flowable<DelCarInfo> delCarInfo(@Field("productIds") int productIds);
 
 }
